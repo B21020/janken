@@ -37,8 +37,27 @@ public class JankenController {
 
   // 結果を計算するビジネスロジックのメソッドを追加
   private String calculateResult(String userChoice, String cpuChoice) {
-    return cpuChoice;
-    // 結果を計算するロジックを実装
-    // 例: グー vs グー は引き分け、グー vs チョキ は勝ち、など
+    if (userChoice.equals(cpuChoice)) {
+      return "引き分け";
+    } else if (userChoice.equals("rock")) {
+      if (cpuChoice.equals("scissors")) {
+        return "勝ち";
+      } else {
+        return "負け";
+      }
+    } else if (userChoice.equals("scissors")) {
+      if (cpuChoice.equals("paper")) {
+        return "勝ち";
+      } else {
+        return "負け";
+      }
+    } else if (userChoice.equals("paper")) {
+      if (cpuChoice.equals("rock")) {
+        return "勝ち";
+      } else {
+        return "負け";
+      }
+    }
+    return "無効な選択"; // 予期せぬ選択がある場合
   }
 }
