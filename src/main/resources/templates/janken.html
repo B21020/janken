@@ -7,6 +7,11 @@
 
 <body>
   <p>Hi <span th:text="${username}">????</span></p>
+  <p>ログインユーザ名: <span th:text="${loggedInUser}"></span></p>
+  <p>エントリーしているユーザ:</p>
+  <ul>
+    <li th:each="user : ${allUsers}" th:text="${user}"></li>
+  </ul>
 
   <a href="/play?choice=rock">グー</a>
   <a href="/play?choice=scissors">チョキ</a>
@@ -15,6 +20,8 @@
   <p>あなたの手: <span th:text="${userChoice}"></span></p>
   <p>CPUの手: <span th:text="${cpuChoice}"></span></p>
   <p>結果: <span th:text="${result}"></span></p>
+
+  <a href="/logout">Log Out</a>
 </body>
 
 </html>

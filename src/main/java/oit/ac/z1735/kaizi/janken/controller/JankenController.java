@@ -1,24 +1,39 @@
 package oit.ac.z1735.kaizi.janken.controller;
 
+//import org.h2.engine.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import oit.ac.z1735.kaizi.janken.model.Entry;
+
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 @Controller
 public class JankenController {
 
+  private Entry entry;
+
+  @Autowired
+  public JankenController(Entry entry) {
+    this.entry = entry;
+  }
+
   @PostMapping("/janken")
   public String janken(@RequestParam String username, ModelMap model) {
     model.addAttribute("username", username);
-    return "janken.html"; // janken.htmlを表示
+    return "janken"; // janken.htmlを表示
   }
 
   @GetMapping("/janken")
-  public String jankenPage() {
-    return "janken.html"; // janken.htmlを表示
+  public String jankenPage(Model model) {
+    // モデルにエントリの情報を設定
+    model.addAttribute("loggedInUser", entry.getLoggedInUser());
+    model.addAttribute("allUsers", entry.getAllUsers());
+    return "janken";
   }
 
   @GetMapping("/play")
