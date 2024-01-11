@@ -1,5 +1,7 @@
 package oit.ac.z1735.kaizi.janken.controller;
 
+import java.security.Principal;
+
 //import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +31,11 @@ public class JankenController {
   }
 
   @GetMapping("/janken")
-  public String jankenPage(Model model) {
+  public String jankenPage(Model model, Principal prin) {
     // モデルにエントリの情報を設定
+    String loggedInUser = prin.getName();
+    this.entry.setLoggedInUser(loggedInUser);
+    this.entry.loginUser(loggedInUser);
     model.addAttribute("loggedInUser", entry.getLoggedInUser());
     model.addAttribute("allUsers", entry.getAllUsers());
     return "janken";

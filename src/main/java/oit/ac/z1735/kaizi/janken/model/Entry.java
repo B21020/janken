@@ -2,6 +2,7 @@ package oit.ac.z1735.kaizi.janken.model;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,14 @@ public class Entry {
     return allUsers;
   }
 
+  public void setLoggedInUser(String loggedInUser) {
+    this.loggedInUser = loggedInUser;
+  }
+
+  public void setAllUsers(Set<String> allUsers) {
+    this.allUsers = allUsers;
+  }
+
   public void loginUser(String username) {
     loggedInUser = username;
     allUsers.add(username);
@@ -28,4 +37,5 @@ public class Entry {
     // ログアウト時の処理を追加する（セッションのクリアなど）
     loggedInUser = null;
   }
+
 }
