@@ -64,6 +64,8 @@ public class JankenAuthConfiguration {
         .password("{bcrypt}$2y$10$.XkMClzun17kzUMQCLTGFeQf2HWIbG8roD8MR/8fSifqAevaW8um2").roles("USER").build();
     UserDetails user2 = User.withUsername("user2")
         .password("{bcrypt}$2y$10$/2pxtW65sxg49qyUUE2XkOaEgHVuc9mMWE7W/vR2V.U2H/G8UxRrK").roles("USER").build();
+    UserDetails user3 = User.withUsername("ほんだ")
+        .password("{bcrypt}$2y$10$y1RmNYveAzcNWTh644xEceuRWql00LdNb2RdoKX2tYH74/NBedgXC").roles("USER").build();
     UserDetails admin = User.withUsername("admin")
         .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("ADMIN").build();
     // $ sshrun htpasswd -nbBC 10 customer1 p@ss
@@ -83,7 +85,7 @@ public class JankenAuthConfiguration {
         .build();
 
     // 生成したユーザをImMemoryUserDetailsManagerに渡す（いくつでも良い）
-    return new InMemoryUserDetailsManager(user1, user2, admin, customer1, customer2, seller);
+    return new InMemoryUserDetailsManager(user1, user2, user3, admin, customer1, customer2, seller);
   }
 
 }
